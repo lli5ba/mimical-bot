@@ -3,7 +3,7 @@ chrome.runtime.onMessage.addListener(
     if( request.message === "clicked_browser_action" ) {
       var firstHref = $("a[href^='http']").eq(0).attr("href");
 	  var domString = DOMtoString(document)
-	  var friendIdList = test.match("\"shortProfiles\":(.*),\"nearby\":");
+	  var friendIdList = domString.match("\"shortProfiles\":(.*),\"nearby\":");
 	  console.log(friendIdList);
 	  
       chrome.runtime.sendMessage({"message": "open_new_tab", "url": firstHref});
