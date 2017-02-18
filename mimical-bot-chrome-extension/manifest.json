@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "My Own Chatbot",
+  "version": "0.1",
+
+
+"content_scripts": [
+  {
+    "matches": [
+	"https://www.facebook.com/messages/*", 
+	"http://www.facebook.com/messages*"
+    ],
+    "js": ["jquery-3.1.1.min.js", "content.js"]
+  }
+],
+
+"browser_action": {
+  "default_icon": "icon.png"
+},
+
+"background": {
+  "scripts": ["background.js"]
+}
+
+}
