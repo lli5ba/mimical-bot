@@ -1,7 +1,7 @@
 # mimical-bot
 Messenger chatbot generator  
 
-Tasks:
+Tasks:  
 1. Register domain name mimicalbot.com  
 2. Retrieve messenger json files  
 3. Parse messenger files into training corpus format  
