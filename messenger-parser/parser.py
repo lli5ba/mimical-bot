@@ -88,4 +88,4 @@ if(__name__=="__main__"):
 		json_files = [join(convo_path, f) for f in listdir(convo_path) if isfile(join(convo_path, f))]
 		for file_path in json_files:
 			print(file_path)    
-            parseJSONFile(file_path, fb_id)
+            		parseJSONFile(file_path, fb_id)
