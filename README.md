@@ -8,17 +8,17 @@ Then POSTs these along with chatbot name and password and isPublic to an api end
 
 API processes this by:
 
--Scraping message corpus
+*Scraping message corpus
 
--Parsing message corpus and training a model
+*Parsing message corpus and training a model
 
--Saving the model file to an AWS Bucket
+*Saving the model file to an AWS Bucket
 
--Storing chatbot name, password, and filename in a DB
+*Storing chatbot name, password, and filename in a DB
 
 API also has these endpoints:
 
-/getPublicChatbots() 
+'''/getPublicChatbots()''' 
 
 Returns list of available chatbots
 
