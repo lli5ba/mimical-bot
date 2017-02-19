@@ -1,5 +1,5 @@
 # Project Specific dirs
-Messages/
+messenger-parser/Messages/
 dumper.py
 parse.py
 
