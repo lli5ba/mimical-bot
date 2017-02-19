@@ -1,16 +1,37 @@
-chrome.runtime.onMessage.addListener(
+/*chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if( request.message === "clicked_browser_action" ) {
-      var firstHref = $("a[href^='http']").eq(0).attr("href");
-	  var domString = DOMtoString(document)
-	  var friendIdList = domString.match("\"shortProfiles\":(.*),\"nearby\":");
-	  console.log(friendIdList);
+	  var domString = DOMtoString(document);
+	  var friendIdsJson = JSON.parse(domString.match("\"shortProfiles\":(.*),\"nearby\":")[1]);
+	  var friendIds = []
+	  for(var id in friendIdsJson){
+	    friendIds.push(id);
+	  }
+
+		
+	  console.log(friendIds);
+	  
 	  
       chrome.runtime.sendMessage({"message": "open_new_tab", "url": firstHref});
     
     }
   }
-);
+);*/
+
+getFriendIds();
+
+function getFriendIds() {
+
+    var domString = DOMtoString(document);
+	var friendIdsJson = JSON.parse(domString.match("\"shortProfiles\":(.*),\"nearby\":")[1]);
+	var friendIds = []
+	for(var id in friendIdsJson){
+	  friendIds.push(id);
+	}
+	console.log(friendIds);
+	chrome.runtime.sendMessage({"message": "page_loaded", "friendIds": friendIds});
+  
+};
 
 // @author Rob W <http://stackoverflow.com/users/938089/rob-w>
 // Demo: var serialized_html = DOMtoString(document);
