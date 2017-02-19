@@ -1,6 +1,8 @@
 import json
+import os
+from os import listdir
+from os.path import isfile, join
 
-user_id = "fbid:1593894711"
 
 def createOutputFiles(messages, user_id):
     trainA = open("train.en","a")
@@ -76,4 +78,14 @@ def parseJSONFile(textFile, user_id):
     createOutputFiles(messages, user_id)
     
 if(__name__=="__main__"):
-    parseJSONFile("0-2000.pretty.json", user_id)
+    #Change fb_id to the id of the chatbot you want to create
+    fb_id = "fbid:##########"
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+	messages_path = os.path.join(dir_path, "Messages")
+	conversation_dirs = os.listdir(messages_path)
+	for dir_name in conversation_dirs:
+		convo_path = os.path.join(messages_path, dir_name)
+		json_files = [join(convo_path, f) for f in listdir(convo_path) if isfile(join(convo_path, f))]
+		for file_path in json_files:
+			print(file_path)    
+            parseJSONFile(file_path, fb_id)
