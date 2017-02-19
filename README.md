@@ -8,25 +8,30 @@ Then POSTs these along with chatbot name and password and isPublic to an api end
 
 API processes this by:
 
-*Scraping message corpus
+* Scraping message corpus
 
-*Parsing message corpus and training a model
+* Parsing message corpus and training a model
 
-*Saving the model file to an AWS Bucket
+* Saving the model file to an AWS Bucket
 
-*Storing chatbot name, password, and filename in a DB
+* Storing chatbot name, password, and filename in a DB
 
 API also has these endpoints:
 
-'''/getPublicChatbots()''' 
+ ```
+ /getPublicChatbots()
+ ```
 
 Returns list of available chatbots
 
+```
 /getPublicModel(chatbotName)
+```
 
 Returns id of AWS bucket file
-
+```
 /getModel(chatbotName, password)
+```
 
 Returns id of AWS bucket file
 
@@ -34,7 +39,7 @@ CHATBOT webhook (python) is on separate AWS server that can call this BACKEND se
 
 The chatbot runs in a while loop? It starts with this prompt and has a global field that loads a model
 
-Chatbot:
+#####Chatbot:
 
 Hi! Who would you like to talk to?
 
@@ -44,7 +49,7 @@ This persona is password protected. Please enter a password.
 
 You are now chatting with ____. Type "%restart" to pick a new persona.
 
-Processing Text Corpus:
+#####Processing Text Corpus:
 
 Use timestamp differences to find out if the chatbot-persona-user is starting the conversation or responding.
 
