@@ -1,5 +1,6 @@
 // Called when the user clicks on the browser action.
 chrome.browserAction.onClicked.addListener(function(tab) {
+	console.log("clicked")
   // Send a message to the active tab
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     var activeTab = tabs[0];
@@ -10,7 +11,8 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 chrome.runtime.onMessage.addListener(
 	  function(request, sender, sendResponse) {
 		if( request.message === "open_new_tab" ) {
-		  //chrome.tabs.create({"url": request.url});
+		  console.log("make new tab")
+		  chrome.tabs.create({"url": request.url});
 		}
 	  }
 	);
@@ -19,7 +21,7 @@ var getFriendIds = new Promise( function(resolve) {
 	chrome.runtime.onMessage.addListener(
 	  function(request, sender, sendResponse) {
 		if( request.message === "page_loaded" ) {
-		  //console.log(request.friendIds); 
+		  console.log(request.friendIds); 
 		  resolve(request.friendIds);
 		}
 	  }
@@ -61,6 +63,17 @@ var getPostBody = new Promise( function(resolve) {
 	{urls: [ "https://www.facebook.com/ajax/mercury/thread_info.php?dpr=1" ]},['requestBody']);
 });
 
+
+// This function is called onload in the popup code
+function getPageDetails(callback) { 
+    // Inject the content script into the current page 
+    chrome.tabs.executeScript(null, { file: 'content.js' }); 
+    // Perform the callback when a message is received from the content script
+    chrome.runtime.onMessage.addListener(function(message)  { 
+        // Call the callback function
+        callback(message); 
+    }); 
+};
 
 Promise.all([getFriendIds, getPostBody, getCookieValue]).then(function(payloads) {
 	var postData = {}

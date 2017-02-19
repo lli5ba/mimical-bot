@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body { 
+                min-width: 100px; 
+                overflow-x: hidden; 
+                font-family: Arial, sans-serif; 
+                font-size: 12px; 
+            }
+            input, textarea { 
+                width: 100px; 
+            }
+            input#save { 
+                font-weight: bold; width: auto; 
+            }
+        </style>
+        <script src="popup.js"></script>
+    </head>
+    <body>
+        <form id="createbot">
+            <p><label for="username">Chatbot Name</label><br />
+            <input type="text" id="username" name="username" size="50" value="" /></p>
+			<p><label for="isPublic">Make Chatbot Public</label><br />
+            <input type="checkbox" id="isPublic" name="isPublic" value=false /></p>
+            <p><label for="password">Password</label><br />
+            <input type="password" id="password" name="password" size="50" value="" /></p>
+            
+            <p>
+                <input id="save" type="submit" value="Save Chatbot" />
+                <span id="status-display"></span>
+            </p>
+        </form>
+    </body>
+</html>

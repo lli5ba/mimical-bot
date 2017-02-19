@@ -1,22 +1,19 @@
 /*chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    if( request.message === "clicked_browser_action" ) {
-	  var domString = DOMtoString(document);
-	  var friendIdsJson = JSON.parse(domString.match("\"shortProfiles\":(.*),\"nearby\":")[1]);
-	  var friendIds = []
-	  for(var id in friendIdsJson){
-	    friendIds.push(id);
-	  }
-
-		
-	  console.log(friendIds);
-	  
-	  
-      chrome.runtime.sendMessage({"message": "open_new_tab", "url": firstHref});
+    if( request.message === "clicked_browser_action" ) { 
+     
     
     }
   }
-);*/
+);
+*/
+
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
+	console.log(message);
+  if(message.popupOpen) { /* do your stuff */ 
+	 chrome.runtime.sendMessage({"message": "open_new_tab", "url": "https://www.facebook.com/messages/"});
+  }
+});
 
 getFriendIds();
 
